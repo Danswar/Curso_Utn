@@ -24,7 +24,7 @@
 
     <h2>Update: editando un registro en la BBDD</h2>
     <form action="php/editar.php?id= <?php echo $id ?>" method="POST"> <!-- Inyectamos los datos en el form-->
-        <input type="text" name="id" id="id" value = "<?php echo $id ?>" hidden>
+        <input type="hidden" name="id" id="id" value = "<?php echo $id ?>" >
         <input type="text" name="name" id="name" autofocus value = "<?php echo $name ?>">
         <button type="submit">Editar</button>
     </form>
