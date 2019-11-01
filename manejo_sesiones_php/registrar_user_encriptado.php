@@ -1,3 +1,31 @@
+<?php
+    
+    //print_r($_POST);
+    if(!empty($_POST)){
+      $username = $_POST['username'];
+      $password= $_POST['password'];
+
+      //encriptamos la contraseña, el campo en la BBDD tiene que tener al menos 60 caracteres
+      $password_encriptado = password_hash($password,PASSWORD_BCRYPT);
+
+      $conexion = mysqli_connect("localhost","root","","wm2019");
+      $sql= "INSERT INTO `usuario`(`username`, `pwd`, `activo`) VALUES ('{$username}','{$password_encriptado}','1')";
+
+      $rta = mysqli_query($conexion,$sql);
+      
+      var_dump($rta);
+
+      if($rta){
+        header('location: login_seguro.html');
+       
+      }else{
+        echo "Error en los datos";
+      }
+     
+  }
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +45,7 @@
 </div>
 
 
-<form class="container col-5 mt-5" method="POST" action="registro_seguro.php">
+<form class="container col-5 mt-5" method="POST" >
   <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
     <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre de usuario">
