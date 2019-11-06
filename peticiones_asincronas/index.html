@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Peticiones Asincronas con Axios</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!--Libreria Axios-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+        <p class="row">Traeras información sin refrescar el navegador al pulsar el boton</p>
+        <div class="row">
+            <button type="button" class="btn btn-primary" onclick="doPeticion()">Trae una pagina sin recargar</button>
+        </div>
+    </div>
+
+    <p id="resultado" class="container">
+
+    </p>
+
+    <script>
+
+        async function doPeticion(){
+            var respuesta =  await axios.get("https://jsonplaceholder.typicode.com/todos");
+            document.getElementById('resultado').innerHTML = respuesta.data;
+            
+        }
+
+    </script>
+
+
+</body>
+</html>
